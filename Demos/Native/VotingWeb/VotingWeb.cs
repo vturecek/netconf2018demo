@@ -45,20 +45,20 @@ namespace VotingWeb
                             {
                                 ServiceEventSource.Current.ServiceMessage(serviceContext, $"Starting Kestrel on {url}");
 
-                                    return new WebHostBuilder()
-                                     .UseKestrel()
-                                     .ConfigureServices(
-                                         services => services
-                                             .AddSingleton<HttpClient>(new HttpClient())
-                                             .AddSingleton<FabricClient>(new FabricClient())
-                                             .AddSingleton<StatelessServiceContext>(serviceContext)
-                                             .AddSingleton<ITelemetryInitializer>((serviceProvider) => FabricTelemetryInitializerExtension.CreateFabricTelemetryInitializer(serviceContext)))
-                                     .UseContentRoot(Directory.GetCurrentDirectory())
-                                     .UseStartup<Startup>()
-                                     .UseApplicationInsights()
-                                     .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.None)
-                                     .UseUrls(url)
-                                     .Build();
+                                return new WebHostBuilder()
+                                    .UseKestrel()
+                                    .ConfigureServices(
+                                        services => services
+                                            .AddSingleton<HttpClient>(new HttpClient())
+                                            .AddSingleton<FabricClient>(new FabricClient())
+                                            .AddSingleton<StatelessServiceContext>(serviceContext)
+                                            .AddSingleton<ITelemetryInitializer>((serviceProvider) => FabricTelemetryInitializerExtension.CreateFabricTelemetryInitializer(serviceContext)))
+                                    .UseContentRoot(Directory.GetCurrentDirectory())
+                                    .UseStartup<Startup>()
+                                    .UseApplicationInsights()
+                                    .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.None)
+                                    .UseUrls(url)
+                                    .Build();
                             }))
             };
         }
@@ -69,9 +69,9 @@ namespace VotingWeb
         /// </summary>
         /// <param name="poll"></param>
         /// <returns></returns>
-        internal static Uri GetVotingDataServiceName(ServiceContext context)
+        internal static Uri GetVotingDataServiceName(ServiceContext context, string poll)
         {
-            return new Uri($"{context.CodePackageActivationContext.ApplicationName}/VotingData");
+            return new Uri($"{context.CodePackageActivationContext.ApplicationName}/polls/{poll}");
         }
     }
 }

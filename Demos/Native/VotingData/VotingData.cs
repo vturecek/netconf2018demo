@@ -28,7 +28,7 @@ namespace VotingData
         }
 
         /// <summary>
-        /// Optional override to create listeners (like tcp, http) for this service instance. test
+        /// Optional override to create listeners (like tcp, http) for this service instance.
         /// </summary>
         /// <returns>The collection of listeners.</returns>
         protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -43,19 +43,19 @@ namespace VotingData
                             {
                                 ServiceEventSource.Current.ServiceMessage(serviceContext, $"Starting Kestrel on {url}");
 
-                                    return new WebHostBuilder()
-                                     .UseKestrel()
-                                     .ConfigureServices(
-                                         services => services
-                                             .AddSingleton<StatefulServiceContext>(serviceContext)
-                                             .AddSingleton<IReliableStateManager>(this.StateManager)
-                                             .AddSingleton<ITelemetryInitializer>((serviceProvider) => FabricTelemetryInitializerExtension.CreateFabricTelemetryInitializer(serviceContext)))
-                                     .UseContentRoot(Directory.GetCurrentDirectory())
-                                     .UseStartup<Startup>()
-                                     .UseApplicationInsights()
-                                     .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.UseUniqueServiceUrl)
-                                     .UseUrls(url)
-                                     .Build();
+                                return new WebHostBuilder()
+                                    .UseKestrel()
+                                    .ConfigureServices(
+                                        services => services
+                                            .AddSingleton<StatefulServiceContext>(serviceContext)
+                                            .AddSingleton<IReliableStateManager>(this.StateManager)
+                                            .AddSingleton<ITelemetryInitializer>((serviceProvider) => FabricTelemetryInitializerExtension.CreateFabricTelemetryInitializer(serviceContext)))
+                                    .UseContentRoot(Directory.GetCurrentDirectory())
+                                    .UseStartup<Startup>()
+                                    .UseApplicationInsights()
+                                    .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.UseUniqueServiceUrl)
+                                    .UseUrls(url)
+                                    .Build();
                             }))
             };
         }

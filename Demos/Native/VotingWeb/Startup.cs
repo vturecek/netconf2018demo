@@ -55,7 +55,8 @@ namespace VotingWeb
                 {
                     routes.MapRoute(
                         name: "default",
-                        template: "{controller=Home}/{action=Index}/{id?}");
+                        defaults: new { controller = "Home", action = "Index" },
+                        template: "polls/{poll}");
                 });
         }
     }
