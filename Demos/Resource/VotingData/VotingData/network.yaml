@@ -1,0 +1,14 @@
+## Network definition ##
+network:
+  schemaVersion: 1.0.0-preview1
+  name: VotingApplicationNetwork
+  properties:
+    description: VotingApplicationNetwork description.
+    addressPrefix: 10.0.0.4/22
+    ingressConfig:
+      layer4:
+        - name: VotingDataIngress
+          publicPort: 20000
+          applicationName: VotingApplication
+          serviceName: VotingData
+          endpointName: VotingDataEndpoint

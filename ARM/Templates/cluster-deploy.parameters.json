@@ -1,0 +1,57 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": ""
+    },
+    "name": {
+      "value": ""
+    },
+    "adminUserName": {
+      "value": ""
+    },
+    "adminPassword": {
+      "value": ""
+    },
+    "vmImagePublisher": {
+      "value": "MicrosoftWindowsServer"
+    },
+    "vmImageOffer": {
+      "value": "WindowsServer"
+    },
+    "vmImageSku": {
+      "value": "2016-Datacenter-with-Containers"
+    },
+    "vmImageVersion": {
+      "value": "latest"
+    },
+    "loadBalancedAppPort1": {
+      "value": 80
+    },
+    "loadBalancedAppPort2": {
+      "value": 8081
+    },
+    "clusterCertificateStorevalue": {
+      "value": "My"
+    },
+    "clusterCertificateThumbprint": {
+      "value": ""
+    },
+    "sourceVaultValue": {
+      "value": ""
+    },
+    "clusterCertificateUrlValue": {
+      "value": ""
+    },
+    "storageAccountType": {
+      "value": "Premium_LRS"
+    },
+    "nt0InstanceCount": {
+      "value": 5
+    },
+    "nt0VMSize": {
+      "value": "Standard_D4s_v3"
+    }
+  }
+}
